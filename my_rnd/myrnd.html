@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!-- 초성 검색 기능 관련 학습 -->
+<head>
+  <meta charset="UTF-8">
+  <title>초성 검색 + 카테고리 필터 + 성능 비교</title>
+  <style>
+    body { font-family: sans-serif; padding: 2em; }
+    input, select { padding: 0.5em; margin-right: 1em; }
+    ul { list-style: none; padding: 0; }
+    li { margin: 0.3em 0; }
+    span { color: gray; font-size: 0.9em; }
+    canvas { margin-top: 2em; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <h2>🔍 초성 검색 + 🍱 카테고리 필터 + ⚡ 성능 비교</h2>
+
+  <!-- 검색 입력창 -->
+  <input type="text" id="searchInput" placeholder="이름 또는 초성을 입력하세요" />
+
+  <!-- 카테고리 선택 필터 -->
+  <select id="categoryFilter">
+    <option value="all">전체 카테고리</option>
+  </select>
+
+  <!-- 검색 결과 출력 리스트 -->
+  <ul id="resultList"></ul>
+
+  <!-- 성능 비교 차트를 그릴 캔버스 -->
+  <canvas id="chartCanvas" width="400" height="200"></canvas>
+
+  <script>
+    let names = [];         // 전체 데이터
+    let indexMap = new Map();  // 초성 인덱스 Map
+
+    // 한글 이름에서 초성만 추출
+    function getChosung(text) {
+      const CHO = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+      let result = '';
+      for (let char of text) {
+        const code = char.charCodeAt(0) - 44032;
+        if (code >= 0 && code <= 11171) {
+          const cho = Math.floor(code / 588);
+          result += CHO[cho];
+        } else {
+          result += char;
+        }
+      }
+      return result;
+    }
+
+    // 초성 인덱스 Map 생성
+    function indexData() {
+      indexMap.clear();
+      names.forEach(item => {
+        const cho = getChosung(item.name);
+        indexMap.set(cho, (indexMap.get(cho) || []).concat(item));
+      });
+    }
+
+    // JSON 데이터의 카테고리 기반 select 옵션 구성
+    function updateCategoryOptions() {
+      const categories = new Set(names.map(n => n.category));
+      const select = document.getElementById("categoryFilter");
+      categories.forEach(cat => {
+        const option = document.createElement("option");
+        option.value = cat;
+        option.textContent = cat;
+        select.appendChild(option);
+      });
+    }
+
+    // 검색어 + 카테고리 필터 기반 검색 수행 및 결과 출력
+    function searchNames(query) {
+      const resultEl = document.getElementById("resultList");
+      resultEl.innerHTML = '';
+
+      const selectedCategory = document.getElementById("categoryFilter").value;
+      const isChosung = /^[ㄱ-ㅎ]+$/.test(query);
+      const matched = [];
+
+      if (!query) return; // ← 초기 또는 빈 입력 시 검색 결과 비표시
+
+      names.forEach(item => {
+        const name = item.name;
+        const cho = getChosung(name);
+        const match = isChosung ? cho.includes(query) : name.includes(query);
+        const categoryMatch = selectedCategory === "all" || item.category === selectedCategory;
+
+        if (match && categoryMatch) matched.push(item);
+      });
+
+      matched.forEach(item => {
+        const li = document.createElement("li");
+        li.innerHTML = `${item.name} <span>(${item.category})</span>`;
+        resultEl.appendChild(li);
+      });
+
+      benchmarkSearch(query); // 검색 성능 측정
+    }
+
+    // Map vs Object 방식 성능 비교 및 측정
+    function benchmarkSearch(query) {
+      const isChosung = /^[ㄱ-ㅎ]+$/.test(query);
+
+      // Object 기반 인덱싱 생성
+      const objIndex = {};
+      names.forEach(item => {
+        const cho = getChosung(item.name);
+        objIndex[cho] = (objIndex[cho] || []).concat(item);
+      });
+
+      // Map 방식 검색 측정
+      const start1 = performance.now();
+      names.forEach(item => {
+        const target = isChosung ? getChosung(item.name) : item.name;
+        if (target.includes(query)) { /* no-op */ }
+      });
+      const end1 = performance.now();
+
+      // Object 방식 검색 측정
+      const start2 = performance.now();
+      Object.keys(objIndex).forEach(cho => {
+        if (cho.includes(query)) { /* no-op */ }
+      });
+      const end2 = performance.now();
+
+      const mapTime = (end1 - start1).toFixed(3);
+      const objTime = (end2 - start2).toFixed(3);
+
+      renderChart(mapTime, objTime);
+    }
+
+    // Chart.js를 이용한 성능 결과 시각화
+    function renderChart(mapTime, objTime) {
+      const ctx = document.getElementById('chartCanvas').getContext('2d');
+      if (window.benchmarkChart) window.benchmarkChart.destroy();
+
+      window.benchmarkChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Map 방식', 'Object 방식'],
+          datasets: [{
+            label: '검색 소요 시간 (ms)',
+            data: [mapTime, objTime],
+            backgroundColor: ['#4CAF50', '#FF9800']
+          }]
+        },
+        options: {
+          responsive: false,
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    // JSON 파일 로드 및 초기화
+    fetch('names.json')
+      .then(res => res.json())
+      .then(data => {
+        names = data;
+        indexData();
+        updateCategoryOptions();
+
+        // 검색창 이벤트 연결
+        document.getElementById("searchInput").addEventListener("input", e => {
+          searchNames(e.target.value.trim());
+        });
+
+        // 카테고리 선택 이벤트 연결
+        document.getElementById("categoryFilter").addEventListener("change", () => {
+          const query = document.getElementById("searchInput").value.trim();
+          searchNames(query);
+        });
+      });
+  </script>
+</body>
+</html>
