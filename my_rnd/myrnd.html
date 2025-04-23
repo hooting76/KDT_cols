@@ -3,14 +3,18 @@
 <!-- 초성 검색 기능 관련 학습 -->
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>초성 검색 + 카테고리 필터 + 성능 비교</title>
   <style>
+    html {margin: 0 auto; width: fit-content; text-align: center; height: 100%; border-right: 1px solid #ccc; border-left: 1px solid #ccc;}
     body { font-family: sans-serif; padding: 2em; }
     input, select { padding: 0.5em; margin-right: 1em; }
     ul { list-style: none; padding: 0; }
     li { margin: 0.3em 0; }
     span { color: gray; font-size: 0.9em; }
-    canvas { margin-top: 2em; }
+    canvas { margin: 5px auto; }
+    #resultList { width:100%; height: 200px; overflow: auto; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 10px 0;}
+    #resultList > li{ display:inline-block; width: fit-content; margin: 3px 5px; border: 1px solid #ccc; border-radius: 15px; padding: 1px 3px;}
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
