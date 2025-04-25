@@ -1,0 +1,20 @@
+
+/*
+    작성 조건)
+    1) 글꼴의 종류 : 나눔 명조 *
+    2) 글자의 크기 : 1em *
+    3) 단어간 간격(단어간) : 0.5em *
+    4) 글자간의 간격(자간) : 2px *
+    5) 문장(줄)간의 간격 : 1.8em (줄간격이 출력 보기 화면과 맞지 않을 경우는 크기를 조절하십시오) *
+    6) 첫 문단 들여쓰기 : 3em *
+    7) 글자 색상 : Sienna *
+    8) 문단(div)의 크기(너비 * 높이) : 800px * 260px *
+    9) 문단 외곽선 굵기 : 4px *
+    10) 문단 외곽선 색상 : RosyBrown *
+    11) 문단 외곽선 형태 : 이중선(double) *
+    12) 문단 배경색상 : Snow *
+    13) 문단 내부 간격(외곽선과의 간격) - 상하/좌우 : 15px 20px *
+*/
+*{ font-family: "Nanum Myeongjo", serif; font-weight: 400; font-style: normal; font-size: 1em; word-spacing: .5em; line-height: 1.8em; color: sienna; text-indent: 3em; letter-spacing: 2px;} 
+
+.div{width: 800px; min-height: 260px; background-color: snow;  padding: 15px 20px; margin: 20px auto; border-style: double; border-width: 4px; border-color: rosybrown;}
