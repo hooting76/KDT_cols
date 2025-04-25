@@ -143,18 +143,18 @@
       });
      
       // 검색요소가 있고 없고에 따라 예외 처리하기.
-      if(itemCnt == 0){
+      if(itemCnt == 0){ // 입력을 했지만 해당 요소가 없을때
         const el_isNull = document.createElement("li");
         el_isNull.className = "el_isNull";
         el_isNull.innerHTML = "해당 검색 내용이 존재하지 않습니다.";
         list.appendChild(el_isNull); // 결과 리스트에 항목 추가
-      }else if(!query){
+      }else if(!query){//입력값 자체가 없을때
         const el_isNull = document.createElement("li");
         el_isNull.className = "el_isNull";
         el_isNull.innerHTML = "검색을 시도해 보세요.";
         list.appendChild(el_isNull); // 결과 리스트에 항목 추가        
       }else{
-        results.forEach(item => {
+        results.forEach(item => {// 입력도 했고, 일치하는 요소가 있을때
           const li = document.createElement("li");
           li.innerHTML = `${item.name} <span>(${item.category})</span>`;
           list.appendChild(li); // 결과 리스트에 항목 추가
