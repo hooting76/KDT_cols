@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="#" name="frm">
+        <!--checkbox 로 지정하면 데이터가 prod_01 에 배열형식으로 저장되고 radio형식으로 하면 한가지만 선택할 수 있다.-->
+        <ul>
+            <li>
+                <label for="prod_01">
+                    <input type="checkbox" name="prod_01" id="prod_01">
+                </label>
+            </li>
+            <li>
+                <label for="prod_01">
+                    <input type="checkbox" name="prod_01" id="prod_01">
+                </label>
+            </li>
+            <li>
+                <label for="prod_01">
+                    <input type="checkbox" name="prod_01" id="prod_01">
+                </label>
+            </li>      
+            
+            <li>
+                <label for="num">
+                    최대 숫자5 / 최소 숫자0 : 
+                    <input type="number" name="num" id="num" min="0" max="5"/> <!--min / max 를 지정함으로 불 필요한 입력을 제어할 수 있다.-->
+                </label>
+            </li>                     
+        </ul>
+        <input type="submit" value="전송">
+        <input type="reset" value="초기화">
+        
+    </form>
+
+    <br>
+    * form 입력 : regex(백단 점검)<br><br>
+
+    입력 -> 완성(이벤트 발생) -> 백단 전송(form validation : java, node.js 등등) -> 백단 처리 -><br>
+    -> 프론트 메시징(y/n) -> 프론트 메시징처리(팝업, 여백 메시지 출력) <br><br>
+
+
+</body>
+</html>

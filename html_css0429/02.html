@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form / input</title>
+
+    <style>
+        body{
+            width: 500px;
+            margin: 0 auto;
+        }
+        fieldset{
+            border-radius: 15px;
+            padding: 25px;
+        }
+        fieldset > input#member_id{
+            display: block;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1.5px solid #aaa;
+        }
+        input[type=text]{
+            border-radius: 5px;
+            border: 2px dotted #aaa;
+        }
+    </style>
+
+</head>
+<body>
+    
+    form 태그는 특히나 back-end와 연관이 아주 깊다. <br>
+    data의 전송처리 및 형태의 지정. 양식의 customize 의 용이성이 있다.<br><br>
+    
+    * 폼 점검 : 백엔드에 연결하기 전에 # 으로 action 값을 지정하면 주소로 넘어가는 인자값의 형태를 점검할 수 있다.<br>
+    ** form validation : 폼 데이터 유효성 점검<br>
+    ** required : 필수입력 항목<br>
+    ** pattern : 정규식(regex) 입력제한(제약)사항 등록 // 입력한 정규식 외의 입력을 거부함. // + title를 통해 툴팁에 내용을 추가할 수 있다.<br>
+    ** form 태그 > novalidate 요소는 폼 점검 기능 정지.<br>
+    ** action 주소는 사용하는 서버사이드 언어의 처리파일로 이동시키자.<br><br>
+
+    <form action="#" method="get" name="act_form">
+        <fieldset>
+            <legend>
+                폼 예시
+            </legend>
+            <input type="month" name="member_id" id="member_id" placeholder="입력하세요." required>
+            <input type="text" name="member_txt" id="member_txt" placeholder="member_txt" required pattern="[가-힣]{2,4}" title="한글만 입력하십시오." /><br>
+
+            <input type="text" name="member_txt_02" id="member_txt_02" placeholder="2025-04-29 형식으로 입력해주세요." 
+            pattern="\d{4}-\d{1,2}-\d{1,2}" required title="형식에 맞게 입력하세요."/><br>
+
+            <input type="email" name="email_info" id="email" placeholder="이메일 입력" required pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*" title="이메일 입력란을 확인하세요."/><br>
+            <!-- html5에서는 기본적으로 이메일 타입은 @ 포함 여부에 대해서만 점검해준다. 따라서 별도의 이메일 정규식을 추가해주는게 좋다. -->
+            <!-- tel 타입은 사용자입력 체크 x -->
+
+            <input type="submit" value="전송"> <!--사실 submit이 없어도 enter를 누르면 submit이 동작된다.-->
+        </fieldset>
+    </form>
+</body>
+</html>
