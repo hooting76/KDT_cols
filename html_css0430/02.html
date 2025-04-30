@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>select box sample</title>
+
+  <script src="https://raw.githubusercontent.com/LeaVerou/prefixfree/gh-pages/prefixfree.min.js"></script>
+
+  <style>
+	select 
+	{ 
+		width:300px;
+		height:100px;
+
+		font-size:3em;
+		font-family:굴림;
+
+		/* 네이티브(native) 외형 감추기 */ 
+		appearance: none; 
+		text-align: center;
+
+		/* iOS 라운드 외곽 제거 */
+		border-radius: 0px; 
+
+		/* 
+			알파(객체 투명도) 조정
+			은닉(숨기기) : opacity: 0
+		*/
+		opacity: 0.5; 
+		filter:alpha(opacity=0.5); /* IE8 */
+
+	} 
+
+	/* IE 10, 11의 네이티브(native) 화살표 숨기기 */ 
+	select::-ms-expand { display: none; }
+  </style>
+ </head>
+ <body>
+  
+<!-- select 태그에 multiple 를 부여하면 여러 값을 받게 됀다. / 이런 경우 여러개의 데이터가 넘어감으로 값에 대한 배열처리가 필요함. -->
+  <select id="select_box" name="select_box" multiple>
+    <!-- selected 옵션을 줌으로써 페이지 로드시, 기본값을 고를 수 있다. -->
+    <!-- select 의 경우는 기본값이 option 태그 있으면 기본적으로 폼 검사를 안해도 무방하다. // 값이 있으니깐! -->
+    <!-- value 를 부여 함으로써 값을 넘길때 해당 value로 넘어간다. / value가 없으면 option 태그 내의 텍스트가 값이 된다. -->
+    
+	<option value="1">서울</option>
+  	<option value="2" selected>인천</option>
+	<option value="0">부산</option>
+	<option value="3">대구</option>
+	<option value="6">광주</option>
+	<option value="4">울산</option>
+
+    <!-- optgroup 태그는 option의 세부분류로 사용된다.  -->
+    <!-- <optgroup label="커피(Coffee)">
+        <option value="americano">아메리카노</option>
+        <option value="caffe latte">카페라떼</option>
+        <option value="espresso">에스프레소</option>
+    </optgroup> -->
+
+    <!-- 이 외에도 size 요소를 통해 한번에 보여줄 요소의 갯수를 조정할 수 있다. -->
+
+  </select>
+
+ </body>
+</html>

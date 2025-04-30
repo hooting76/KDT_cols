@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>textarea</title>
+</head>
+<body>
+    <form action="">
+        <!-- 공식적인 폼 요소 -->
+        <textarea name="asdf" id="asdf" cols="20" rows="10" style="resize: none;"></textarea>
+
+        <hr>
+        <!-- contenteditable : 입력 에디터로 쓸 수 있지만, 폼 데이터 전송 처리시엔 별도의 처리가 필요하다.(js) -->
+        <div id="txt2" contenteditable="true"
+            style="width: 300px; height: 200px; overflow: auto; background-color: gray;" >
+        </div>
+
+        <input type="submit" value="전송">
+        <input type="reset" value="초기화">
+    </form>
+</body>
+</html>
