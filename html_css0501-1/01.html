@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인트로페이지 예제</title>
+
+    <!-- vendor 접두사(ex. -webkit-) 자동처리 script -->
+    <script src="https://raw.githubusercontent.com/LeaVerou/prefixfree/gh-pages/prefixfree.min.js"></script>
+    
+    <style>
+    /* 
+       화면 전체 그라이언트(그라데이션 배경색 CSS 코드를 그라이언트(그라데이션) 생성 사이트에서 추출합니다. 
+       ex) https://uigradients.com/#Predawn
+    */    
+    body {        
+        margin: 0;
+        background: #C9FFBF;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #FFAFBD, #C9FFBF);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #FFAFBD, #C9FFBF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        width: 100vw;
+        height: 100vh;
+    }          
+
+    /* 
+        인트로 타이포(글자)를 감싸는 컨테이너 레이어를 아래와 같이 등록합니다.
+
+        조건) 너비 및 높이 : 화면 전체 길이, 레이어 내부 컨텐츠에 대한 중앙정렬
+    */
+    .wrap {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 
+        글자(타이포) 배경 처리
+    */
+    .typo-background {
+        
+        /* 글자색 투명 */ 
+        color: transparent;
+        /* 글꼴 크기 : 9vw */
+        font-size: 9vw;
+        /* 글꼴 두께 : 700 */
+        font-weight: 700;
+        /* 자간(글자간 간격) : 0.3vw */
+        word-spacing: .3vw;
+        /* 대상 글자를 모두 영문 대문자로 치환 */
+        text-transform: uppercase;
+        
+        /* 글자 박스의 너비 : 글자 9자 분량 ex) calc 함수 활용 */
+        width: calc(100% - 33vw);
+        /* 글자 문단 정렬 : 가운데 정렬 */
+        margin: auto;
+
+        /* 배경 처리 */
+        /* 글자 속(내부) 배경 그림 : developer_working.webp */                
+        /* background-clip 대상을 "텍스트(글자)"로 지정 */
+        background: url(/html_css0501-1/img/developer_working.webp) center center no-repeat;
+        background-clip: text;     
+
+        /* 내가 별도 추가 한 코드 */
+        -webkit-text-stroke: 2px #333; 
+        /* 
+            이 코드는 웹 표준이 아니지만, 전반적인 웹 브라우저 에서 잘 동작한다.
+            이 해당 사항에 대한 내용은은 mdn 에서도 명시 되어 있다.
+        */
+    }
+    </style>
+</head>
+<body>
+    <!-- 
+        그라디언트 생성 사이트(ex. https://uigradients.com/#Predawn)에서 개인 취향에 맞는 그라디언트 배경 CSS를 추출하여,
+        인트로 타이포그라피(intro typography)를 미리보기와 같이 구현하십시오.
+     -->
+    <div class="wrap">
+    
+        <div class="typo-background">Web & App Developer</div>
+
+    </div>    
+
+</body>
+</html>
