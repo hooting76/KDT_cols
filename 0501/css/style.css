@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+/* body 태그에 마진을 10px 할당합니다 */
+body{
+    margin: 10px auto;
+    max-width: 1000px;
+}
+
+/* ul 태그에 "4열(컬럼)으로 패널 레이아웃"을 구성합니다. 내부간격(20px), 리스트의 자체 스타일 제거 */  
+ul{
+    list-style: none;
+    column-count: 4; 
+    text-align: center;
+    padding-left: 0;
+}
+
+
+li {
+    break-inside: avoid; /* 패널 박스 출력시 컨텐츠 분할 현상 방지 */
+    display: inline-block;
+    height: auto;
+    border: 1px solid #333;
+    border-radius: 30px;
+    margin: 15px;
+    cursor: pointer;
+    filter: drop-shadow(2px 2px 2px #333);
+    transform: scale(1);
+    background: #efefef;
+    transition: all .1s;
+}
+
+li:hover{
+    filter: drop-shadow(2px 4px 6px #000);
+    transform: scale(1.1);
+}
+
+
+img {
+    /* "블록" 단위의 디스플레이 설정 */
+    display: block;
+    /* 너비 100% */
+    width: 100%;
+    /* 높이 자동인식 설정 */
+    height: auto;
+    /* 외곽선 둥근 모서리 처리 : 30px */
+    border-radius: 30px 30px 0 0;
+    filter: grayscale(1);
+    transition: filter .1s;
+
+}
+
+li:hover > img{
+    filter: grayscale(0);
+}
+
+/* p 문단 태그에 글꼴 크기는 12 포인트, 가로 정렬은 중앙 정렬 설정 */
+p{
+    font-size: 12pt;
+    text-align: center;
+    padding: 7.5px;
+    word-break: keep-all;
+    margin: 0 auto;
+    border-top: 10px solid #abc;
+}
