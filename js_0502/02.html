@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        window.onload = function(){
+            // let thatCfm = confirm("Are you sure about that?");
+            // 디버깅을 원한다면 변수 할당 방식이 선호
+            // 코드의 간결함 만을 원한다면 한줄에 confirm을 들여쓰는 방법도 존재
+
+            //if(thatCfm){ 와 동일
+            // if(thatCfm == true){
+            //     alert("가즈아ㅏㅏㅏㅏㅏㅏㅏ");
+            //     console.log("가즈아ㅏㅏㅏㅏㅏㅏㅏ");
+            // }else{
+            //     alert("noooooooooo");
+            //     console.log("noooooooooo");
+            // }
+
+            let str = prompt("입력", 123);
+            console.log("str : ",str);
+
+            // 아래 식은 문자열로 문자 끼리 이어붙는다.
+            // let sum = str + 2;
+            // 그래서 int 타입으로 파싱을 해줘야 한다.
+            let sum = parseInt(str) + 2;
+
+            //console.log("sum = " + sum);와 같은 의미
+            console.log("sum = ",sum);
+            // 값의 형태가 NaN : Not A Number 라면, / 숫자가 아님
+
+            // 요약 / js(ES6 / ECMAScript 6)
+            // - html 요소를 동적으로 제어
+            // - 요소에다가 적용 시,(전위: windows.onload = ~ / 후위 : 그대로 입력하여 진행)
+            // - 선택자를 통해 인식 및 제어
+            // - 변수 정의 / var let const
+            // - MDN -> javascript or WEB API
+            // - 코딩 규칙(컨벤션)
+
+     };
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
