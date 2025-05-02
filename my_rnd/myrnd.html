@@ -10,25 +10,62 @@
 			     maximum-scale=1, 
 			     user-scalable=no">  
   <link rel="stylesheet" href="style.css">
-  <script src="ChosungSearch.js" defer></script>
+  <script src="ChosungSearch.js"></script>
 </head>
 
 <body>
-  <h2>🔍 초성 검색 + 🍱 카테고리 필터</h2>
+
+  <div class="teb">
+    <p class="teb_btn search">초성검색</p>
+    <p class="teb_btn roundBoard">돌림판</p>
+  </div>
+
+  <div class="searchWrap">
+    <h2>🔍 초성 검색 + 🍱 카테고리 필터</h2>
   
-  <!-- 검색어 입력창 -->
-  <input type="text" id="searchInput" placeholder="이름 또는 초성으로 입력해보세요." />
+    <!-- 검색어 입력창 -->
+    <input type="text" id="searchInput" placeholder="이름 또는 초성으로 입력해보세요." />
+  
+    <!-- 카테고리 선택 필터 -->
+    <select id="categoryFilter">
+      <option value="all">카테고리</option>
+    </select>
+  
+    <!-- 검색 결과 출력 영역 -->
+    <div class="chosungLabel">
+      <ul>
+        <li class="chosungLabelTxt">ㄱ</li>
+        <li class="chosungLabelTxt">ㄲ</li>
+        <li class="chosungLabelTxt">ㄴ</li>
+        <li class="chosungLabelTxt">ㄷ</li>
+        <li class="chosungLabelTxt">ㄸ</li>
+        <li class="chosungLabelTxt">ㄹ</li>
+        <li class="chosungLabelTxt">ㅁ</li>
+        <li class="chosungLabelTxt">ㅂ</li>
+        <li class="chosungLabelTxt">ㅃ</li>
+        <li class="chosungLabelTxt">ㅅ</li>
+        <li class="chosungLabelTxt">ㅆ</li>
+        <li class="chosungLabelTxt">ㅇ</li>
+        <li class="chosungLabelTxt">ㅈ</li>
+        <li class="chosungLabelTxt">ㅉ</li>
+        <li class="chosungLabelTxt">ㅊ</li>
+        <li class="chosungLabelTxt">ㅋ</li>
+        <li class="chosungLabelTxt">ㅌ</li>
+        <li class="chosungLabelTxt">ㅍ</li>
+        <li class="chosungLabelTxt">ㅎ</li>
+      </ul>
+    </div>
+    <ul id="resultList">
+      <li class="el_isNull">검색을 시도해 보세요.</li>
+    </ul>
+  
+    <p class="subTit">fetch()함수로 JSON 파일을 비동기 호출하여 초성검색 결과 출력에 대해 실시간으로 처리</p>  
+  </div>
 
-  <!-- 카테고리 선택 필터 -->
-  <select id="categoryFilter">
-    <option value="all">카테고리</option>
-  </select>
+  <div class="board">
+    asdf
+  </div>
 
-  <!-- 검색 결과 출력 영역 -->
-  <ul id="resultList">
-    <li class="el_isNull">검색을 시도해 보세요.</li>
-  </ul>
 
-  <p class="subTit">fetch()함수로 JSON 파일을 비동기 호출하여 초성검색 결과 출력에 대해 실시간으로 처리</p>  
 </body>
 </html>

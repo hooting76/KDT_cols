@@ -45,6 +45,9 @@ table {
 
 /* ===================================================================     */
 
+
+
+
 /* 본문 css 시작 */
 /* 태그 css 시작 */
 h2{margin-bottom: 15px;}
@@ -57,8 +60,11 @@ canvas { margin: 5px auto; }
  /* 태그 css 끝 */
 
 /* id, class 지정 시작 */
+
+.chosungLabel{margin-top: 15px; text-align: center; width: 100%;}
+
 #searchInput::placeholder{color: #aaa; font-size: 12px;}
-#resultList { width:100%; height: 200px; overflow: auto; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 10px 0; margin: 15px 0;}
+#resultList { width:100%; height: 200px; overflow: auto; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 10px 0; margin-bottom: 15px;}
 
 #resultList > li:not(.el_isNull){ display:inline-block; width: 30%; margin: 3px 5px; border: 1px solid #ccc; border-radius: 15px; padding: 7.5px 0; cursor: pointer; margin: 0.3em; transition: all .3s;}
 
@@ -73,3 +79,29 @@ canvas { margin: 5px auto; }
 .subTit{word-break: keep-all; line-height: 21px;}
 /* id, class 지정 끝 */
 /* 본문 css 끝 */
+
+.chosungLabel > ul {display: flex; justify-content: space-around;}
+.chosungLabel > ul > li{ border: 1px solid #ccc; border-radius: 5px 5px 0 0; padding: 2px; cursor: pointer; color: white; font-size: 21px;}
+
+.chosungLabel > ul > li:nth-of-type(1)  { background-color: #E63946; } /* 빨강 */
+.chosungLabel > ul > li:nth-of-type(2)  { background-color: #F1FAEE; color: black;} /* 거의 흰색 */
+.chosungLabel > ul > li:nth-of-type(3)  { background-color: #A8DADC; } /* 연한 청록 */
+.chosungLabel > ul > li:nth-of-type(4)  { background-color: #457B9D; } /* 청색 */
+.chosungLabel > ul > li:nth-of-type(5)  { background-color: #1D3557; } /* 진한 남색 */
+.chosungLabel > ul > li:nth-of-type(6)  { background-color: #FFB703; } /* 강한 노랑 */
+.chosungLabel > ul > li:nth-of-type(7)  { background-color: #FB8500; } /* 주황 */
+.chosungLabel > ul > li:nth-of-type(8)  { background-color: #8E44AD; } /* 보라 */
+.chosungLabel > ul > li:nth-of-type(9)  { background-color: #2ECC71; } /* 초록 */
+.chosungLabel > ul > li:nth-of-type(10) { background-color: #3498DB; } /* 밝은 파랑 */
+.chosungLabel > ul > li:nth-of-type(11) { background-color: #E67E22; } /* 따뜻한 주황 */
+.chosungLabel > ul > li:nth-of-type(12) { background-color: #E74C3C; } /* 진한 빨강 */
+.chosungLabel > ul > li:nth-of-type(13) { background-color: #16A085; } /* 청록 */
+.chosungLabel > ul > li:nth-of-type(14) { background-color: #2980B9; } /* 파랑 */
+.chosungLabel > ul > li:nth-of-type(15) { background-color: #D35400; } /* 진한 주황 */
+.chosungLabel > ul > li:nth-of-type(16) { background-color: #C0392B; } /* 어두운 빨강 */
+.chosungLabel > ul > li:nth-of-type(17) { background-color: #7D3C98; } /* 진한 보라 */
+.chosungLabel > ul > li:nth-of-type(18) { background-color: #2C3E50; } /* 차콜 네이비 */
+.chosungLabel > ul > li:nth-of-type(19) { background-color: #F39C12; } /* 금빛 노랑 */
+
+
+.board{display: none;}
