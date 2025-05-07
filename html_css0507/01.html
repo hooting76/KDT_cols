@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수업중 과제 / form</title>
+
+    <!-- css 폴더에 있는 style.css 파일을 불러들입니다. -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- google icons : https://fonts.google.com/icons -->
+    <!-- google icons css 파일을 원격에서 불러들입니다. -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+</head>
+<body>
+    
+    <div class="wrap">
+
+        <form action="#" id="frm" name="frm">
+        <h1> 사용자 입력 폼 </h1>
+        <hr>
+        <!-- 이름 -->
+        <div class="input-fld-pnl" id="id-fld">
+            <span class="icon-fld material-symbols-outlined">
+                person
+            </span>
+            <label for="name">
+                <span class="txt-label">이름</span>
+            </label>
+
+            <input class="input-fld" type="text" id="name" name="name" required />
+        </div>
+        <!--// 이름 -->
+
+        <!-- 위의 이름 필드와 미리보기를 참고하여 나머지 필드들을 작성하십시오. -->
+
+        <!-- 이메일 -->
+        <!-- TODO -->
+        <div class="input-fld-pnl" id="id-fld">
+            <span class="material-symbols-outlined">
+                mail
+            </span>
+            <label for="email">
+                <span class="txt-label">이메일</span>
+            </label>
+
+            <input class="input-fld" type="text" id="email" name="email" required />
+        </div>
+        <!--// 이메일 -->
+
+        <!-- 전화번호 -->
+        <!-- TODO -->
+        <div class="input-fld-pnl" id="id-fld">
+            <span class="material-symbols-outlined">
+                phone_iphone
+            </span>
+            <label for="phone_num">
+                <span class="txt-label">전화번호</span>
+            </label>
+
+            <input class="input-fld" type="number" id="phone_num" name="phone_num" required placeholder=" '-' 빼고 입력 "/>
+        </div>
+        <!--// 전화번호 -->
+
+        <!-- 상담내용 -->
+        <div class="input-fld-pnl" id="mobile-fld">
+            <span class="material-symbols-outlined">
+                description
+            </span>
+            <!-- TODO -->
+            <label for="content">
+                <span class="txt-label">상담내용</span>
+            </label>
+            
+            <textarea id="content" name="content" required></textarea>
+        </div>
+        <!--// 상담내용 -->
+
+        <!-- 하단 버튼 -->
+        <div class="input-fld-pnl ">
+            <input type="reset" value="초기화" name="reset" id="reset">
+            <input type="submit" value="전송" name="submit" id="submit">
+        </div>
+        <!--// 하단 버튼 -->
+
+    </form>
+
+    </div>
+
+</body>
+</html>
