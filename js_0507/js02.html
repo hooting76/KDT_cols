@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js02</title>
+    <script>
+        const num3 = 1; // 전역 변수 
+        // 자바에서의 final 과 동일
+        // 기존값을 보호(캡슐화, 은닉)
+        
+        let num6;
+
+        window.onload = ()=> { // 첫번째 함수
+            // to do
+            // let num1 =1, num2 =2; // 이와 같이 한줄로도 압축하여 작성 가능. 다만, 가독성이 떨어짐으로 잘 안씀.
+            // let num1 = 1;
+            // let num2 = 2;
+
+            const num1 = 1;  // 지역변수
+            // let 과는 다르게 const로 선언 하면 값을 무조건 넣어줘야 한다. // 상수(constant variable) 정의(불변값)
+            // 값 대입(assignment) 불가.
+            console.log(num1);
+            console.log(num2);
+            console.log(num3);
+        };
+
+        window.onload = ()=> { // 두번째 함수
+            // to do
+            // let num1 =1, num2 =2; // 이와 같이 한줄로도 압축하여 작성 가능. 다만, 가독성이 떨어짐으로 잘 안씀.
+            // let num1 = 1;
+            // let num2 = 2;
+
+            const num2 = 2; // 지역변수
+            // let 과는 다르게 const로 선언 하면 값을 무조건 넣어줘야 한다. // 상수(constant variable) 정의(불변값)
+            // 값 대입(assignment) 불가.
+
+            //console.log(num1); // 에러
+            console.log(num2);
+            console.log(num3);            
+        };    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

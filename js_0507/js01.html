@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js_01</title>
+    <script>
+        window.onload = function(){
+            // do something...
+
+            // 변수 선언(variable declaration / definition)
+            // typeof 는 해당 변수의 타입을 확인할 수 있는 메서드
+
+            // var num;
+            // console.log("num : ", num); // num이 정의가 안됨 // undefined
+
+            // -----------------------------------
+
+            // var num = 1;
+            // console.log("num : ", num); // num = 1 
+            // console.log("num의 자료형:", typeof num) // number
+
+            // -----------------------------------
+
+            // var num;
+            // console.log("num의 자료형 :", typeof num); // undefined
+            // console.log("num의 자료형 :", typeof(num)); // undefined
+
+            // -----------------------------------
+
+            // var num = 1;
+            // var num = "asdf";
+            // var를 이용해서 변수를 다른 변수타입으로의 재정의(re-define)가 가능하다.
+            // ex) num type => string type            
+
+            // 만일 위의 상황에서 num = 2 를 이어서하면 숫자 2로 재정의 하면서 num type으로 재정의
+            // 만일 위의 상황에서 num = "qwer" 를 이어서하면 재정의 하면서 string type으로 재정의
+
+            // console.log("num : ",num); // asdf
+            // console.log("num : ",typeof(num)); // string
+            // 허나, 변수명을 num으로 사용용도을 명확히 지정하였다면 num 이름에맞게 사용하는게 좋다.
+
+            let num; // 상위에 var num 으로 지정되어 있다면 에러가 나온다. 
+            // js01.html:43  Uncaught SyntaxError: Identifier 'num' has already been declared (at js01.html:43:17)
+            // 이 에러의 경우 재정의 관련한 정의오류로 나온다. 이는 상위에서 var 타입으로 이미 num 을 선언 하였기 때문 // 기존 정의된 변수에 대해 재정의x
+            // console.log("num : ",num);
+
+            // let num; // 에러 // 이미 상위에 let num 으로 지정하였기에 중복 정의가 됨으로 에러가 나온다.
+            // var 와 let 의 재정의 관련해서 차이가 난다 // 변수의 지역성 보장에 대한 차이점.
+            // ex) java언어의 지역변수 범위(scope)
+
+            // 지역 범위 : {...}               // 지역 변수(block scope)
+            // 전체 범위 : js 최상단 변수 정의  // 전역 변수 
+
+            // 정리 : var와 다르게 변수 재정의(x) => 명확하게 변수 지정 가능. // 그래서 var 보다도 let 사용을 더 권장.
+            // 다만, let 은 특정 type 으로 지정 했다면 같은 타입에 한해 값 대입이 가능하다.
+
+            // let : 처음 지정한 타입으로 낙장 불입. // var : 타입까지 변경이 가능하다.
+
+            num = 1;
+            console.log("num : ",num);
+
+            // num : 변수명 이자 식별자의 일종 (identifier). 
+            // 키워드와는 다르다. => let 같은 예약어는 사용 불가.
+            // = 연산자(operator) : 우측값을 좌측으로 대입 // let num = 3; // 3의 값을 num 에 대입.
+            // 1, "JS" : 값, 변수(VALUE), 리터럴(LITERAL : 상수, 값)
+
+            // 참고 : 변수명 지정 가능 여부 예시
+            // O
+            let alert;
+            let console;
+            let string;
+            let boolean;
+            let Var;
+            let String;
+            let async;
+            let await;
+            let Let;
+
+            // X
+            // let var;
+            // let function;
+            // let return;
+            // let for;
+            // let if;
+            // let let;
+
+
+
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
