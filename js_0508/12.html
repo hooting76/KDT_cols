@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단</title>
+    <script>
+        window.onload = ()=>{
+            // 사용자 입력
+            let user_input = parseInt(prompt("몇단을 출력? ex) 2, 4"));
+
+            if(isNaN(user_input) === true){ // 숫자가 아닌 입력에 대한 판별
+                document.body.innerHTML += "<h2>입력값 오류</h2>";
+            }else{
+                //몇단인지 명시해주기
+                document.body.innerHTML += `<h2>${user_input}단 출력 합니다.</h2>`;
+
+                // n단 연산
+                for(let i=1; i<=9; i++){
+                    document.body.innerHTML += `<p>${user_input} * ${i} = ${user_input*i}</p>`
+                    // 마지막 단이면, 점선으로 구분해주기
+                    if(i == 9) document.body.innerHTML += "<p>-------------------------</p>";
+                };// n단 연산 end
+
+            }; // 입력 판별에 대한 판별 end
+
+        }; //window.onload end
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
