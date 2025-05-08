@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0508조건연산자(삼항연산자) + switch문 </title>
+    <script>
+        window.onload = ()=>{
+            // ?: 조건연산자(삼항연산자) / A ? T : F
+            // ex)      if ? true() : false();
+            // ex-1)    (num % 3 === 0) ? alert("3의 배수입니다.") : alert("3의 배수가 아닙니다.");
+
+            //let result = score >= 60 ? "합격" : "불합격";
+
+            let score = 10;
+
+            //let credit = score == 10 ? 'A' :
+            //             score == 9  ? 'A' :
+            //             score == 8  ? 'B' :
+            //             score == 7  ? 'C' :                                                  
+            //             score == 6  ? 'D' : 'F';
+            
+            //console.log(credit);
+
+            //--------------------------------
+
+            switch(score){
+                case 10 : credit = 'A';
+                    break;
+                case 9  : credit = 'A';
+                    break;
+                case 8  : credit = 'B';
+                    break;
+                case 7  : credit = 'C';
+                    break;
+                case 6  : credit = 'D';
+                    break;
+                default : credit; // default case는 어디에 넣어도 상관 없으나, 처음이나 끝에 지정해주는게 좋다.
+                    break;
+            }
+
+            console.log(credit);
+        };
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
