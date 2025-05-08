@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0508_js / 연산자</title>
+    <script>
+        window.onload = function(){
+            // 연산자 / 연산부호
+            // +, -, *, /, % 등등....
+        
+            //let result1 = 5 + 8;
+            //let result2 = 5 - 8;
+            //let result3 = 5 * 8;
+            //let result4 = 5 / 8;
+            //let result5 = 5 % 8;
+
+            let num1 = 1;
+            let num2 = 1;
+
+            // num1++; // 후위증가수열 -> 기존값을 출력 후, 연산에서 탈출 후에 증가
+            // ++num2; // 전위증가수열 -> 기존값에 먼저 증가 후 출력. 이후, 연산에서 탈출
+            // console.log("num1 :", num1); // 2
+            // console.log("num2 :", num2); // 2
+
+            //console.log("num1 :", num1++);  // 1 // num1 값 먼저 출력 후 증가연산
+            //console.log("num2 :", ++num2);  // 2 // num2 값 먼저 증가연산 후 출력
+
+            let a= 10;
+            //let b = a++ + 5; //15
+            let b = ++a + 5; //16
+            console.log(b);
+
+            // == : 값이 같은가
+            // === : 값 + 자료형 까지 같은지 확인
+
+            // != , !== : 1)값이다르면 true / 2)값이 다르거나 자료형이 다르면 true
+            // ||, &&, ! : 논리합, 논리곱, 부정논리
+            // 문자열 비교 같은 경우는 아스키값으로 비교할 수 있다.
+
+        };
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

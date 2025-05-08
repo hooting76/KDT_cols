@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js0508_조건문</title>
+    <script>
+        window.onload = () =>{
+
+            let user_sc = parseInt(prompt("점수는?")); // 사용자 입력 받기
+            console.log(user_sc);
+            
+            let credit = "F"; // 학점 초기화
+
+            if(user_sc > 100 || user_sc < 0 || user_sc == NaN ){ // 입력값 외는 거른다.
+                alert("0 ~ 100 사이를 입력하세요");
+                return;
+            }else if(user_sc >= 90 && user_sc <= 100){
+                //a
+                credit = "A";
+                console.log(credit);
+            }else if(user_sc >= 80 && user_sc <= 89){
+                //b
+                credit = "B";
+                console.log(credit);
+            }else if(user_sc >= 70 && user_sc <= 79){
+                //c
+                credit = "C";
+                console.log(credit);
+            }else if(user_sc >= 60 && user_sc <= 69){
+                //d
+                credit = "D";
+                console.log(credit);
+            }else{
+                // 불합격 f
+                console.log(credit);
+            };
+        };
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

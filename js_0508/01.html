@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0508_js / 형변환</title>
+    <script>
+        window.onload = function(){
+            //----------------------------------
+            //---- 형 변환 ----
+
+            // let num = prompt("입력 : ");
+            // console.log("num 자료형:", typeof num); // string
+
+            // let result = num * 10; // 이 과정에서 string -> number 형태로 자동 변환
+            // console.log("num 자료형:", typeof result); // number
+
+            // let result = "10" + 20; // 1020 // 연결 연산
+            // let result = 1 + 2 + "3" + 4 + 5; //3345 
+            // 앞의 1 + 2는 덧셈연산 이후, 그 이후로는 문자열 연결 연산으로 전환
+
+            let str = "qwer"; // 형 변환의 대상 o -> 내용이 숫자성분의 문자열이어야 한다.
+            let result = "1234"; // 형 변환의 대상 o -> 내용이 숫자성분의 문자열이어야 한다.
+            result = Number.parseInt(result); // 형 변환(casting)
+            // 여기서 "1234" 가 아닌 "asdf" 라면 NaN(Not a Number)값을 RETURN 한다.
+            // "123.4" 라면 parseInt 로 형 변환을 하면 소수점 자리는 삭제된다. // 소수점도 원하면 parseFloat 사용
+
+            result = result + 2;
+            //console.log(typeof result, result); //number, 1236(1234 + 2)
+
+            let ex01 = '123asd';
+            ex01 = parseInt(ex01); 
+            // 뒤의 asd는 삭제된체로 123이 num type으로 return 된다.
+            // 만약, "asd123" 인체로 parseInt 한다면, NaN 이 RETURN 된다.
+            // console.log(ex01);
+
+
+
+            //boolean type 
+
+            //let tmp = Boolean(1); // t
+            //let tmp = Boolean(-1); // t
+            //let tmp = Boolean(1.2); // t
+            //let tmp = Boolean("1.2"); // t
+            //let tmp = Boolean("asdf"); // t
+
+            //let tmp = Boolean(0); // f
+            //let tmp = Boolean(); // f
+            let tmp = Boolean(NaN); // f
+
+            // 숫자 0을 제외한 모든 숫자의 boolean return : true
+
+            console.log(tmp);
+
+            //--------------------------------------------
+        };
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
