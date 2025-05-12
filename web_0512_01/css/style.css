@@ -154,6 +154,8 @@ nav.board-pagination {
     list-style: none;
     display: flex;
     align-items: center;
+    justify-content: center;
+    padding-left: 0;
 
 }
 
@@ -172,7 +174,7 @@ nav.board-pagination {
 
     display: flex;
     align-items: center;
-
+    justify-content: center;
 }
 
 /* 게시판 페이지내이션 : 페이지 링크 버튼 */
