@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        var i = 0;
+        var n = 0;
+
+        while (i < 5) {
+            
+            i++; // 이곳에 증감 카운터를 두면 프로그램 정상 수행
+
+            if (i === 3) {
+                continue;
+            }
+
+            console.log("i=", i);
+            n += i;
+            // i++; // 이곳에 증감 카운터를 두면 무한 루프(프로그램 비정상 수행)
+        }
+    </script>
+</body>
+</html>

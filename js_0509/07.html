@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        
+        // 1 ~ 10까지의 수열(순열:sequence) 합계
+        let sum = 0;
+        let i = 1;
+
+        // for () {  // (X)
+        for (;;) {
+           
+            if (i <= 10) {
+                
+                // console.log("sum(합계) =", sum += i);
+                // i++;
+
+                console.log("sum(합계) =", sum += i++); 
+                // console.log("sum(합계) =", sum += ++i); // 합계 65
+                // console.log("sum(합계) =", sum += i+=1); // 합계 65
+
+            } else {
+                break;
+            } 
+
+        } // for 끝
+
+        console.log(`1 ~ 10 까지의 합계는 ${sum} 입니다.`);
+    </script>
+    
+</body>
+</html>
