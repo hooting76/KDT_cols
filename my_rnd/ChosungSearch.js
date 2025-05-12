@@ -83,6 +83,7 @@ window.onload = function(){
   }
   
   // 초기 실행: JSON 데이터 로드 및 이벤트 리스너 설정
+  // 자바스크립트 객체 표기법(JavaScript Object Notation)
   fetch('names.json')
     .then(res => res.json()) // JSON 데이터 파싱
     .then(data => {
