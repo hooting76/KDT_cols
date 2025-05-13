@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/reset.css">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        window.onload = () => {
+            // 레이어(layer : div) 구성
+            // DOM 함수
+            // HTML DOM 객체 : HTML + "Div" + Element
+            // => HTMLDivElement => Web APIs
+
+            let div1 = document.querySelector('body > div');
+
+            // 클래스 명 지정
+            div1.className = "asdf-1234";
+
+            // custom 속성 지정
+            div1.setAttribute('id', "asdf");
+
+            // 스크립트로 스타일 적용
+            // HTML 마크업에 하드코딩으로 요소를 넣어주는것과 동일하다.
+            div1.style.width = "100%";
+
+            let cssStr = "position : fixed;";
+            div1.setAttribute('style',cssStr);
+            // 이 경우 위의 div1.style.width = "100%"; 로 지정한 것과 별개로 setAttribute 로 지정한 스타일이 덮어 씌워진다.
+
+            div1.addEventListener('click', (act) => {
+                console.log("act : ",act.target);
+                // 자기 자신을 나타냄
+
+                // console.log("act : ",this.target);
+                // undefined
+            });
+        };
+    </script>
+    
+    <div>asdf</div>
+
+</body>
+</html>
