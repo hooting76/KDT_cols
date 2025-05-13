@@ -91,6 +91,7 @@ window.onload = function(){
       }
       return res.json();
     }) // JSON 데이터 파싱
+    
     .then(data => {
       names = data;          // 전체 데이터 저장
       indexData();           // 초성 인덱스 생성
