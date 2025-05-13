@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Javascript Test</title>
+<script>
+    // class 키워드/생성자 함수(constructor)/익명 함수(메서드) 활용 예제
+    // 앞전의 prototype 방식보다 훨신 깔끔해짐
+
+	// 은행 계좌 입출력 프로그램 예시
+	class Account {
+		
+		id = '';
+		name = '';
+		accountNo ='';
+		money = 0;
+		interest = 0.05; // 이자율(이율) %
+	
+		constructor() {
+			console.log("통장 계좌 개설");
+		}
+		
+		// 금액 입력
+		input = function(inputType) {
+			
+			console.log(inputType + " 금액 입금");
+			
+			var money = prompt(inputType + " 금액을 입력하십시오 : ");
+			
+			while (true) { 
+				
+				money = isNaN(money) ? 0 : parseInt(money);
+				 
+				if (money <= 0) {
+					money = prompt(inputType + " 금액을 입력하십시오 : ");	
+				} else {
+					break;
+				}
+			} //
+			
+			return money;
+		}
+		
+		// 입금 실행
+		deposit = function(money) {
+			console.log("--- 입금 처리 ---");
+			this.money += money;
+		}
+		
+		// 출금 실행
+		withdraw = function(money) {
+			console.log("--- 출금 처리 ---");
+
+			if (this.money < money) {
+				alert("출금할 잔액이 적습니다.")	
+			} else if (this.money == 0) {
+				alert("잔액이 없습니다.");
+			} else {
+				this.money -= money;
+			}	
+		}
+		
+		// 이자 정산 실행
+		calcInterest = function() {
+			console.log("--- 이자 정산  ---");
+			this.money += this.money * this.interest;
+		}
+	
+		// 잔액 조회
+		checkBalance = function() {
+			console.log("--- 잔액 인쇄 처리  ---");
+			console.log("잔액 : " + this.money + "원");
+		}
+	
+	} // class
+	
+	// 실행
+	window.onload = function() {
+		
+		var account = new Account();
+		
+		// 입금
+		account.deposit(account.input('입금'));
+		// 잔액 조회
+		account.checkBalance();
+		
+		// 출금
+		account.withdraw(account.input('출금'));
+		// 잔액 조회
+		account.checkBalance();
+		
+		// 이자 정산
+		account.calcInterest();
+		// 잔액 조회
+		account.checkBalance(); 
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>
