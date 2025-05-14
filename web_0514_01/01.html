@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/reset.css">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        window.onload = () =>{
+            // console.log(navigator.userAgent); // 접속한 사용자의 브라우저, 기기정보 등을 볼 수 있다.
+            // console.log(navigator.language); // 사용자 언어 표기 : html lang과 연관 없음
+            // console.log(navigator.geolocation); // Geolocation{} 객체 형태로 반환
+
+            // try {
+            //     const imageBlob = new Blob(['<image data>'], {type: 'image/png'});
+            //     const item = new ClipboardItem({
+            //         'image/png': imageBlob
+            //     });
+            //     await navigator.clipboard.write([item]);} 
+            // catch (err) {
+            //     console.error('Failed to copy image:', err);
+            // }
+
+
+
+            // console.log(navigator.clipboard.readText()); //promise객체로 반환
+            // promise객체란? / 비동기 함수의 결과값을 담은 객체
+
+            // Promise 객체는 비동기 작업이 맞이할 미래의 완료 또는 실패와 그 결과 값을 나타냅니다.
+            // =====promise 객체 상태값=====
+            // 대기(pending): 이행하지도, 거부하지도 않은 초기 상태.
+            // 이행(fulfilled): 연산이 성공적으로 완료됨.
+            // 거부(rejected): 연산이 실패함.            
+            //  + 
+            // PromiseResult : exemple
+
+
+
+            // console.log(navigator.usb.getDevices());
+
+            // navigator.usb.getDevices().then((devices) => {
+            //   console.log(`Total devices: ${devices.length}`);
+            //   devices.forEach((device) => {
+            //     console.log(
+            //       `Product name: ${device.productName}, serial number ${device.serialNumber}`,
+            //     );
+            //   });
+            // });
+
+
+            // try {
+            //     const text = navigator.clipboard.readText();
+            //     console.log('Pasted content:', text);
+            // } catch (err) {
+            //     console.error('Failed to paste:', err);
+            // }
+
+            //==== 여러 방법의 선택자 제어 ====//
+            // 선택자는 되도록 짫게 지정하는게 좋다 
+            // 속도 + 코드 가독성 + 명확성
+            // let btn = document.querySelector(".selector");
+            // let btn = document.querySelector("[class='selector']");
+            // let btn = document.querySelectorAll("[class='selector']")[0];
+            // let btn = document.querySelectorAll("button[type='submit']")[0];
+
+            // 태그명으로 제어
+            // let btn = document.getElementsByTagName("button")[0];
+            // 이러한 선택자를 handler 로 활용 가능하다.
+
+            //콜백함수 : callback(val) => 인자부에서 호출/정의되는 함수
+            //btn.onclick = () =>{
+            //    //to do
+            //};
+
+            // == await / async ==
+            // - await는 async 함수 안에만 사용할 수 있는 특별한 문법
+            // - promise를 반환하는 함수 앞에 await를 붙이면, 해당 Promise의 상태가 바뀔 때까지 코드가 대기상태.
+            // - └ 즉, promise가 성공이든, 실패이든 상태 바뀌기 전 까지는 연산실행을 안함.
+
+            // 예제 
+            async function handleSubmit() {
+                const paymentData = await paymentWidget.requestPayment({
+                    orderId: "KOISABLdLiIzeM-VGU_8Z", // 주문 ID(직접 만들어주세요)
+                    orderName: "토스 티셔츠 외 2건" // 주문명
+                });
+                console.log(paymentData);
+                    return paymentData
+                };
+            }; 
+            // - 사실상 await이 then() 의 역할을 수행해준다.
+            // 실제 동작 예제는 asyncAwaitEx.html 에서 확인
+
+            
+    </script>
+</body>
+</html>
