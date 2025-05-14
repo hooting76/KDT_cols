@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+body { 
+    margin: 0px; 
+    padding: 0px; 
+}
+
+/* Cookie Gallery */
+/* swiper */
+.swiper {
+    max-width: 1000px;
+    width: 100%;
+    display : flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    margin-top: 100px;
+    border-radius: 15px;
+    transform: rotate(-10deg);
+    background: #fed7c3;
+    user-select: none;
+}
+
+/* 슬라이드 패널 */
+.slider_panel 
+{ 
+    max-width: calc(900px * 14); /* 좌우 마진 포함 (50px + 50px) */
+    display: flex;
+    justify-content: center;
+    background-color:bisque;
+}
+
+/* 쿠키 이미지 */
+.cookie_image 
+{ 
+    width: 100%; 
+    height: 100%; 
+    box-sizing: border-box;
+    padding: 25px;
+    /* margin: 0 50px;     */
+}
+
+/* 쿠키 상품 소개글 */
+.slider_text 
+{ 
+    position:absolute;
+    left:75px;
+    top:100px;
+    width:300px; 
+    height:200px; 
+    text-shadow: #000 1px 0 10px;
+    transform: rotate(10deg) scale(.9);
+}
+
+.swiper-slide{
+    background: #fff;
+    border-radius: 50%;
+    margin: 25px 0 75px;
+}
+
+.swiper-button-next, .swiper-button-prev{
+    top: 97.5% !important;
+    transform: translateY(-50%);
+    width: 50px !important;
+    height: 50px !important;
+    color: #fff !important;
+    margin-bottom: 5px;
+    left: unset !important;
+    right: unset !important;    
+}
+
+.swiper-button-prev{
+    right: 51% !important;
+    background: #fff;
+    border-radius: 50%;
+    color: bisque !important;
+}
+
+.swiper-button-next{
+    left: 51% !important;
+    background: #fff;
+    border-radius: 50%;
+    color: bisque !important;    
+}
+
+.swiper-button-next:after, .swiper-button-prev:after{
+    font-size: 32px !important;
+    font-weight: bold;
+}
+
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction{
+    right: 20px !important;
+    width: fit-content !important;
+    left: unset !important;
+}
+
+.swiper-pagination-bullet{
+    width: 15px !important;
+    height: 10px !important;
+    border-radius: 0 !important;
+    transition: all .3s;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active{
+    background: #ff968a !important;
+    height: 20px !important;
+}

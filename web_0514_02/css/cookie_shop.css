@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+body { 
+    margin: 0px; 
+    padding: 0px; 
+}
+
+/* Cookie Gallery */
+div#cookie_gallery_section
+{
+    width: 700px; 
+    height: 700px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    margin: 50px auto 0;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid #333;
+    /* transform: perspective(400px) translateZ(-50px) rotateX(50deg); */
+
+}
+
+/* 슬라이드 패널 */
+.slider_panel 
+{ 
+    width: calc(700px * 14); /* 800px * 14(개) */
+    display: flex;
+    background-color: bisque;
+}
+
+/* bootstrap carousel icon */
+#slide_custom_left_icon, 
+#slide_custom_right_icon
+{
+    width: 70px;
+    height: 70px;
+    font-weight: bold;
+    background-color: #333;
+    border-radius: 10px;
+}
+
+/* 쿠키 이미지 */
+.cookie_image 
+{ 
+    width: 700px; 
+    height: 700px; 
+    
+    margin : 0;
+}
+
+/* 쿠키 상품 소개글 */
+.slider_text 
+{ 
+    position: absolute;
+    left: 180px; /* 200px => 180px */
+    top: 200px;  /* 250px => 200px */
+    width: 300px; 
+    height: 200px; 
+    text-shadow:  #000 1px 0 10px;
+}
+.carousel-control-next, .carousel-control-prev{
+    top: 50%; transform: translateY(-50%);
+    
+}
+
