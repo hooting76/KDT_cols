@@ -31,7 +31,39 @@ window.onload = () => {
 
     // 나이프/포크를 건드리게 되면 그만 먹는 것으로 간주하여 이벤트 처리
 
-    fork_box.onclick = function() {
+    // fork_box.onclick = function() {
+    //     // 식사중 그만 먹을지 점검!
+    //     if (confirm("피자를 맛있게 먹고 있습니다. 그만 드시겠습니까?")) {
+
+    //         alert("잘 먹었습니다.");
+
+    //         // 포크와 나이프를 치운다.
+    //         console.log("자리 정리");
+    //         fork_box.style.display = "none";
+    //         knife_box.style.display = "none";
+
+    //         // 피자 접시를 비운다.
+    //         main_dish_img.src = "";  
+    //     };      
+    // };
+
+    // knife_box.onclick = function() {
+    //     // 식사중 그만 먹을지 점검!
+    //     if (confirm("피자를 맛있게 먹고 있습니다. 그만 드시겠습니까?")) {
+
+    //         alert("잘 먹었습니다.");
+
+    //         // 포크와 나이프를 치운다.
+    //         console.log("자리 정리");
+    //         fork_box.style.display = "none";
+    //         knife_box.style.display = "none";
+
+    //         // 피자 접시를 비운다.
+    //         main_dish_img.src = "";  
+    //     };      
+    // };
+
+    function eat_end() {
         // 식사중 그만 먹을지 점검!
         if (confirm("피자를 맛있게 먹고 있습니다. 그만 드시겠습니까?")) {
 
@@ -47,22 +79,6 @@ window.onload = () => {
         };      
     };
 
-    knife_box.onclick = function() {
-        // 식사중 그만 먹을지 점검!
-        if (confirm("피자를 맛있게 먹고 있습니다. 그만 드시겠습니까?")) {
-
-            alert("잘 먹었습니다.");
-
-            // 포크와 나이프를 치운다.
-            console.log("자리 정리");
-            fork_box.style.display = "none";
-            knife_box.style.display = "none";
-
-            // 피자 접시를 비운다.
-            main_dish_img.src = "";  
-        };      
-    };
-
-
-   
+    knife_box.onclick = eat_end;
+    fork_box.onclick = eat_end;
 };
