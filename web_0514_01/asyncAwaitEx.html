@@ -1,0 +1,55 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://js.tosspayments.com/v1/payment-widget"></script>
+    <link rel="stylesheet" type="text/css" href="src/styles.css" />
+    <title>asyncAwaitEx</title>
+  </head>
+  <body>
+    <div id="payment-method"></div>
+    <div id="agreement"></div>
+    <!-- 결제위젯, 이용약관 영역 -->
+    <div id="payment-method"></div>
+    <div id="agreement"></div>
+    <div class="wrapper">
+      <button class="button" type="primary" id="payment-button">
+        결제하기
+      </button>
+    </div>
+
+    <!-- 코드 예제 임으로 line by 로 흐름 파악용으로 확인하기 -->
+
+    <script>
+      const clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq"; // 테스트 api 키값 // 별도 발급 필요
+      const customerKey = "ihCbPOLuHP5b0sqP4RKaG"; // 내 상점에서 고객을 구분하기 위해 발급한 고객의 고유 ID
+      const button = document.getElementById("payment-button");
+      // ------  결제위젯 초기화 ------
+      const paymentWidget = PaymentWidget(clientKey, customerKey); // 회원 결제
+  
+      // ------  결제위젯 렌더링 ------
+      const paymentMethodWidget = paymentWidget.renderPaymentMethods(
+        "#payment-method",
+        { value: 15000 },
+        { variantKey: "DEFAULT" } // 렌더링하고 싶은 결제 UI의 variantKey
+      );
+      // ------  이용약관 렌더링 ------
+      paymentWidget.renderAgreement("#agreement");
+  
+      // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
+      button.addEventListener("click", handleSubmit);
+      async function handleSubmit() {
+        try {
+          const paymentData = await paymentWidget.requestPayment({
+            orderId: "KOISABLdLiIzeM-VGU_8Z", // 주문 ID(직접 만들어주세요)
+            orderName: "토스 티셔츠 외 2건" // 주문명
+          });
+          console.log(paymentData);
+          return paymentData;
+        } catch (error) {
+          console.log(error.message);
+        }
+      }
+    </script>
+
+  </body>
+</html>  
