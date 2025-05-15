@@ -1,6 +1,12 @@
-https://devdocs.io/dom/battery_status_api
+DEVDOCS 링크 : https://devdocs.io/dom/battery_status_api
 
 
 
-텍스트 읽어주는 api : https://velog.io/@yeonsubaek/JavaScript
+텍스트 읽어주는 기능 : https://velog.io/@yeonsubaek/JavaScript
+괜찮을 수 있는(?) e-book 페이지 
+ - https://buk.io/
+ - https://ridibooks.com/webtoon/recommendation
+
+ 
+
 
