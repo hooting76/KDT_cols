@@ -1,2 +1,6 @@
 https://devdocs.io/dom/battery_status_api
 
+
+
+텍스트 읽어주는 api : https://velog.io/@yeonsubaek/JavaScript
+
