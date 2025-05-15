@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  	<meta charset="UTF-8">
+  	<title>쿠키샵(cookie shop)</title>
+ 
+	<link href="css/cookie_shop_swiper.css" rel="stylesheet" />
+    <script src="js/index.js" charset="UTF-8"></script>
+	<!-- swiper : https://swiperjs.com/ -->
+	<!-- 
+		문-1) swiper CSS/JS CDN link를 등록합니다.
+
+		참고) https://swiperjs.com/get-started#use-swiper-from-cdn
+	--> 
+	<!-- TODO -->	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>    
+    <script src="js/cookie_shop_swiper.js" charset="UTF-8"></script>
+
+</head>
+
+<body>
+
+	<!-- 전체 레이아웃 -->
+	<div id="wrap_section">
+
+		<!-- 
+			문-2) swiper 갤러리의 컨테이너를 작성합니다. 
+
+			단, 컨트롤 컴포넌트 중에 페이지내이션(슬라이드를 좌우로 전개하는 화살표 버튼)과 인디케이터(indicator)
+			를 제외한 다른 컴포넌트들(Slides 레이어(layer), 스크롤바)은 삭제/생략조치합니다.
+
+			참고) https://swiperjs.com/get-started#add-swiper-html-layout
+		-->
+		<!-- Slider main container -->		 
+		<!-- 쿠키 갤러리 -->
+		<div class="swiper">
+
+			<!-- Additional required wrapper -->
+			<div class="swiper-wrapper" id="slider_panel">
+				
+				<!-- Slides -->
+				<!-- 
+				<div class="swiper-slide">Slide 1</div>
+				<div class="swiper-slide">Slide 2</div>
+				<div class="swiper-slide">Slide 3</div> 
+				-->
+				
+			</div>
+
+			<!-- If we need pagination -->
+			<div class="swiper-pagination"></div>
+
+			<!-- If we need navigation buttons -->
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
+
+			<!-- If we need scrollbar -->
+			<!-- <div class="swiper-scrollbar"></div> -->
+
+		</div>
+		<!--// Slider main container -->
+		<!--// 쿠키 갤러리 -->
+
+        <!-- 사이드패널 시작 -->
+        <aside class="boardWrap">
+            <div class="boardLayer boardTop"> 
+                <!-- 패널 상단 타이틀 및 합계 -->
+                <div class="row rowTit">
+                    <input type="text" readonly value="상품명">
+                    <input type="text" readonly value="단가">
+                    <input type="text" readonly value="주문수량">
+                    <input type="text" readonly value="상품별 합계">
+                </div>
+                <div class="row TotalSumWrap">
+                    <label for="TotalSum">총계 :</label>
+                    <input type="text" name="TotalSum" id="TotalSum" readonly value="0 Won">
+                </div>                
+            </div>
+
+            <div class="boardLayer boardBot">
+                <!-- 반복 생성 시작-->
+                    <!-- 패널 하단 각 항목 리스트 -->
+                    <!-- <div class="row rowList">
+                        <input type="text" name="goodsName_01" id="goodsName_01" value="asdf" readonly>
+                        <input type="number" name="goodsCost_01" id="goodsCost_01" value="1500" readonly>               
+                        <input type="number" name="goodsCnt_01" id="goodsCnt_01" value="0">   
+                        <input type="number" name="goodsTotal_01" id="goodsTotal_01" value="0" readonly>        
+                    </div>     -->
+                <!-- 반복 생성 끝-->
+            </div>            
+        </aside>
+        <!-- 사이드패널 끝 -->
+
+	</div>
+	<!--// 전체 레이아웃 -->
+
+</html>
