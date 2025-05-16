@@ -110,7 +110,6 @@ body {
     border: 1px solid #ccc;
     margin-top: 100px;
     border-radius: 15px;
-    transform: rotate(-10deg);
     background: #fed7c3;
     user-select: none;
 }
@@ -143,13 +142,14 @@ body {
     width:300px; 
     height:200px; 
     text-shadow: #000 1px 0 10px;
-    transform: rotate(10deg) scale(.9);
+    transform: scale(.85);
 }
 
 .swiper-slide{
     background: #fff;
     border-radius: 50%;
     margin: 25px 0 75px;
+    cursor: pointer;
 }
 
 .swiper-button-next, .swiper-button-prev{
@@ -188,16 +188,16 @@ body {
     left: unset !important;
 }
 
-.swiper-pagination-bullet{
+/* .swiper-pagination-bullet{
     width: 15px !important;
     height: 10px !important;
     border-radius: 0 !important;
     transition: all .3s;
-}
-.swiper-pagination-bullet.swiper-pagination-bullet-active{
+} */
+/* .swiper-pagination-bullet.swiper-pagination-bullet-active{
     background: #ff968a !important;
     height: 20px !important;
-}
+} */
 
 @media (max-width : 1400px) {
     #wrap_section{

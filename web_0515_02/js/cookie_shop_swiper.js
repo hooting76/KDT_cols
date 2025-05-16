@@ -106,6 +106,45 @@ window.onload = function() {
                 
                 listWrap.innerHTML += tpl_pn;
             }; 
+
+            // 슬라이드에 커서가 올려저 있다면 슬라이드 자동재생 멈춤
+            let swiper_sld  = document.querySelectorAll('.swiper-slide');
+            let inputSlt    = document.querySelectorAll('.rowList');
+        
+            swiper_sld.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    swiper.autoplay.stop();
+                });
+                element.addEventListener('mouseleave', () => {
+                    swiper.autoplay.start();
+                });
+                element.addEventListener('click', () => {
+                    // let tit = element.querySelector('* > span');
+                    let tit = element.querySelector('.slider_text').getAttribute("id"); //id 추출
+                    tit = parseInt(tit.replace("slider_text","")); // 번호 추출
+                    //console.log(inputSlt[tit]);
+                    //console.log(inputSlt[tit].querySelector(`#goodsCnt_${tit}`));
+
+                    let input_cnt_slt = inputSlt[tit].querySelector(`#goodsCnt_${tit}`);
+
+                    //console.log(input_cnt_slt.value);
+
+                    ++input_cnt_slt.value; // 이미지 누를 때 마다 갯수 카운트 증가
+                });
+            }); // forEach end
+
+            //document.querySelectorAll('input[id^=goodsCnt_]');
+            let cst_input = document.querySelectorAll('input[id^=goodsCost_]');
+            let cnt_input = document.querySelectorAll('input[id^=goodsCnt_]');
+            //console.log(cnt_input);
+            cnt_input.forEach(el => {
+                //console.log(act.getAttribute('value'));
+                //act = act.attributes; 
+                //console.log(el);
+
+
+            });
+            
         });//then
 
 
@@ -153,20 +192,5 @@ window.onload = function() {
                 },
             }
         });
-    
-        // 슬라이드에 커서가 올려저 있다면 슬라이드 자동재생 멈춤
-        let swiper_sld = document.querySelectorAll('.swiper-slide');
-    
-        swiper_sld.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                swiper.autoplay.stop();
-                //console.log(element);
-            });
-            element.addEventListener('mouseleave', () => {
-                swiper.autoplay.start();
-                //console.log(element);
-            });
-        });        
-
 }; // window.onload 
 
