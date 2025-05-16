@@ -58,10 +58,7 @@ window.onload = function() {
                 
                 var tmp = await CookieProduct(cookie_image_files[idx], cookie_text[idx], cookie_price[idx]);
                 cookie_image.push([this.name, this.content, this.price]);
-                // console.log(cookie_image[idx]);
-                // console.log(cookie_image);
             };//for         
-            //console.log(cookie_image); ok
 
             let tpl_str ='';
             let tpl_pn ='';
@@ -100,7 +97,7 @@ window.onload = function() {
                     `<div class="row rowList">
                         <input type="text" name="goodsName_${k}" id="goodsName_${k}" value="${cookie_image[k][0]}" readonly>
                         <input type="number" name="goodsCost_${k}" id="goodsCost_${k}" value="${cookie_image[k][2]}" readonly>               
-                        <input type="number" name="goodsCnt_${k}" id="goodsCnt_${k}" value="0">   
+                        <input type="number" name="goodsCnt_${k}" id="goodsCnt_${k}" value="0" readonly>   
                         <input type="number" name="goodsTotal_${k}" id="goodsTotal_${k}" value="0" readonly>        
                     </div>`;
                 
@@ -108,9 +105,11 @@ window.onload = function() {
             }; 
 
             // 슬라이드에 커서가 올려저 있다면 슬라이드 자동재생 멈춤
+            // 슬라이드 이미지 클릭시, 값을 계산해주는 기능
             let swiper_sld  = document.querySelectorAll('.swiper-slide');
             let inputSlt    = document.querySelectorAll('.rowList');
-        
+            let total_all   = document.querySelector('#TotalSum');
+
             swiper_sld.forEach(element => {
                 element.addEventListener('mouseenter', () => {
                     swiper.autoplay.stop();
@@ -119,33 +118,64 @@ window.onload = function() {
                     swiper.autoplay.start();
                 });
                 element.addEventListener('click', () => {
-                    // let tit = element.querySelector('* > span');
                     let tit = element.querySelector('.slider_text').getAttribute("id"); //id 추출
                     tit = parseInt(tit.replace("slider_text","")); // 번호 추출
-                    //console.log(inputSlt[tit]);
-                    //console.log(inputSlt[tit].querySelector(`#goodsCnt_${tit}`));
 
-                    let input_cnt_slt = inputSlt[tit].querySelector(`#goodsCnt_${tit}`);
+                    let input_cnt_slt = inputSlt[tit].querySelector(`#goodsCnt_${tit}`); // 갯수 추출
+                    let input_cst     = inputSlt[tit].querySelector(`#goodsCost_${tit}`); // 가격 추출
+                    let input_sum     = inputSlt[tit].querySelector(`#goodsTotal_${tit}`); // 한 상품에 대한 총 가격 추출
 
-                    //console.log(input_cnt_slt.value);
+                    let val_num = parseInt(input_cnt_slt.value);
+                    let bf_val = val_num; //이전값을 받아서 이를 인자로 전달하기 위함.
 
-                    ++input_cnt_slt.value; // 이미지 누를 때 마다 갯수 카운트 증가
+                    val_num++; // 이후 증가한 값을 저장
+
+                    input_cnt_slt.value = val_num;
+
+                    return val_list(input_cnt_slt.value, bf_val, input_cst.value, input_sum);
+                    // val_list(현재값, 이전값, 가격, 상품값 표기 선택자);
                 });
+
+                function val_list(current, prev, cst, sum_Val){
+                    //console.log(current); // 현재 상품 갯수
+                    //console.log(prev);    // 이전 상품 갯수
+                    //console.log(cst);     // 개당 상품 가격
+                    //console.log(sum_Val);       // 갯수 * 상품 가격 합계
+
+                    if(current !== prev){ // 값이 증가할때,
+                        let gds_sum = current * cst;
+                        sum_Val.value = parseInt(sum_Val.value) + parseInt(gds_sum);
+
+                        return numbComm();
+                    }else{//이전 값과 동일할때,
+                        return;
+                    };
+                };
+
+                // 합계금액을 문자로 잘라서 자릿수에 맞춰 쉼표 추가해주기
+                function numbComm(){
+                    let list_sum_all = 0;
+                    for(let i=0; i<cookie_image.length; i++){
+                        let list_sum = document.querySelector(`input#goodsTotal_${i}`);
+                        //console.log(list_sum);
+                        list_sum_all += parseInt(list_sum.value);
+                    };
+                    
+                    //console.log(list_sum_all);
+
+                    let str_vl = String(list_sum_all);
+                    let formattedString = str_vl.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+                    total_all.value = formattedString + ' ￦';
+
+                    //console.log(formattedString);                         
+                };
             }); // forEach end
 
-            //document.querySelectorAll('input[id^=goodsCnt_]');
-            let cst_input = document.querySelectorAll('input[id^=goodsCost_]');
-            let cnt_input = document.querySelectorAll('input[id^=goodsCnt_]');
-            //console.log(cnt_input);
-            cnt_input.forEach(el => {
-                //console.log(act.getAttribute('value'));
-                //act = act.attributes; 
-                //console.log(el);
 
-
-            });
-            
         });//then
+
+
 
 
 
