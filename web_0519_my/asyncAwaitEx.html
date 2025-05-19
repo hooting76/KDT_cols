@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async/await 예제</title>
+</head>
+<body>
+    <script>
+        window.onload = () =>{
+            async function getData() { // 비동기 객체 선언
+                try {
+                    const response = await fetch('path'); // await이 붙은 메소드가 작업이 완료가 될 때까지 대기 후, 결과 반환
+                    const data = await response.json(); // json 타입으로 변환하여 data 라는 변수에 저장 하기 실행, 위와 동일한 동작 방식
+                    return data; //data 객체 반환
+                } catch (error) {
+                    console.error(error); //위의 try 구문에서 에러가 발생하면 에러코드 출력하고 마침.
+                };
+                console.log(data); // 반환된 data를 확인
+            };
+        };
+        //async는 함수의 앞에 붙여서 해당 함수가 비동기 함수임을 나타내며, 
+        //await는 비동기 함수의 실행 결과를 기다리는 키워드이다.
+        //async 함수 안에서 await 키워드를 사용하면,
+        //해당 비동기 작업이 완료될 때까지 코드 실행을 일시 중지하고 결과를 기다린 다음,
+        //해당 결과를 반환한다.
+
+        // async await 은 서로 따로 쓸 수 없는 페어링 메서드 이며, 
+        // 함수에 먼저 async로 비동기함수 임을 알려 준 뒤에
+        // await 으로 특정 변수값에 지정하여, 값을 반환할때까지 기다리도록 하여서 코드 처리 순서를 잡아 줄 수 있다.
+
+
+        // 보통의 이러한 비동기 처리의 경우는 try catch 가 거의 따라 오는데
+        // 우선 try 구문 안의 코드들을 실행하는데, 실행중 오류가 발생하면 catch문으로 빠지면서
+        // 에러코드를 반환해주는 구조이다.
+
+        
+    </script>
+</body>
+</html>
