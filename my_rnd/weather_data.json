@@ -1,0 +1,10 @@
+[
+    { "day": 1, "temperature": 15, "humidity": 40, "rainfall": 0.0, "wind": 2.5, "rain_chance": 10 },
+    { "day": 2, "temperature": 16, "humidity": 42, "rainfall": 0.1, "wind": 3.0, "rain_chance": 20 },
+    { "day": 3, "temperature": 17, "humidity": 41, "rainfall": 0.0, "wind": 3.2, "rain_chance": 15 },
+    { "day": 4, "temperature": 18, "humidity": 43, "rainfall": 0.2, "wind": 3.4, "rain_chance": 40 },
+    { "day": 5, "temperature": 19, "humidity": 45, "rainfall": 0.3, "wind": 2.8, "rain_chance": 50 },
+    { "day": 6, "temperature": 20, "humidity": 44, "rainfall": 0.0, "wind": 3.1, "rain_chance": 10 },
+    { "day": 7, "temperature": 21, "humidity": 46, "rainfall": 0.1, "wind": 3.3, "rain_chance": 25 }
+  ]
+  
