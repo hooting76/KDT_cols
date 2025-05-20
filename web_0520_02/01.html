@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>asunc,await,fetch(),csv_fetch() 예시</title>
+
+    <!-- CSV 파일 로드 라이브러리 : https://www.papaparse.com/ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>    
+</head>
+<body>
+    <script>
+        window.onload = () =>{
+
+            //json 확장자의 파일을 불러 올 경우
+            async function fetch_ex(url) {
+                try{
+                    const response  = await fetch(url);
+                    // console.log(typeof response); //object
+
+                    const data      = await response.text();
+                    // console.log(typeof data); //string 정리됨.
+
+                }catch(error){
+                    //console.log(error.code + " fail(catch)");
+                };
+            };
+            fetch_ex('/exJson.json');
+
+            //cvs 확장자의 파일을 불러 올 경우
+            // async function fetchCSV(url) {
+            //     try {
+            //         const response = await fetch(url);
+            //         const data = await response.text();
+            //         // string 난장판
+                    
+            //         let productsStr = data;
+
+            //         productsJSON = Papa.parse(productsStr);
+            //         // 엉망인 상태를 json으로 정리해줌
+            //         console.log("productJSON : ", productsJSON);
+            //         console.log("productJSON typeof : ", typeof productsJSON);    
+            //         // object // json 형태                          
+            //     } catch (error) {
+            //         console.log(error.code);
+            //     }                
+            // };
+            // fetchCSV('/ex.csv');
+
+
+            // 이벤트 버블링 막는 예시
+            let this_el = document.querySelectorAll('.this');
+            //console.log(this_el);
+            this_el.forEach((thing) => {
+                thing.addEventListener('click', (event) =>{
+                    // stopPropagation은 이벤트 버블링 현상을 막는 기능중의 하나로, 버블링의 확산을 막는(다음 요소에 대한 버블링을 막는) 예시
+                    // event.stopPropagation();
+
+                    //preventDefault는 지정하는 요소에 대한 이벤트 자체의 동작을 막는 역할
+                    // event.preventDefault();
+
+                    // 현재 이벤트로 지정한 요소 하나만을 지칭하여 버블링을 막는 방법
+                    // event.currentTarget();
+
+                    // 아마 코드적으로 가벼운건 currentTarget()이지 않을까 싶다.
+
+                });
+            });
+        };
+    </script>
+
+    <div class="this">qwer</div>
+    <div class="this">asdf</div>
+    <div class="this">1234</div>
+</body>
+</html>
