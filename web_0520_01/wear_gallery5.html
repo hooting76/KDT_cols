@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>남성 의류 갤러리</title>
+
+    <!-- google icons :  https://fonts.google.com/icons -->
+    <!-- 
+        구글 아이콘 CDN(Content Delivery Network) 링크 
+        - Guide : https://developers.google.com/fonts/docs/material_symbols?hl=ko 
+    --> 
+    <!-- google symbols --> 
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400&icon_names=favorite,home,search,settings" rel="stylesheet" /> -->
+    
+    <!-- CSV 파일 로드 라이브러리 : https://www.papaparse.com/ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+    <link rel="stylesheet" href="css/wear_gallery5.css" />
+
+    <script src="js/wear_gallery5.js" charset="UTF-8"></script>
+
+    <!-- 의류 사이트 : https://www.kolonsport.com/Category/List/105010080000?productGenders=MALE&srsltid=AfmBOoqn_f8Vhq3xdKF5nR6IBbYBEojZRcG5rFUIzTxvrjkGyyJ3ekw0 -->
+
+    </head>
+    <body>
+    
+        <!-- 이미지 팝업 : 610px * 965px
+             header : 610px * 50px (창닫기) 
+             body(이미지) : 610px * 915px (~ LM1/LM2.jpg) -->
+        <div id="img_popup">
+    
+            <!-- header : 창닫기 버튼 -->
+            <div id="img_popup_header">
+                <span class="material-symbols-outlined">
+                    close
+                </span>    
+            </div> 
+            <!--// header -->
+    
+            <!-- body : 확대 이미지 -->
+            <div id="img_popup_body">
+    
+            </div> 
+            <!--// body -->
+    
+        </div>
+        <!--// 이미지 팝업 -->
+    
+        <!-- 의류 갤러리 -->
+        <div class="wrap">
+        </div>
+        <!--// 의류 갤러리 -->
+        
+        <button type="button" id="btn_btn">
+            클릭
+        </button>
+        
+        <script>
+            let img_popup = document.getElementById("img_popup");
+            const btn_func = document.getElementById("btn_btn");
+    
+            img_popup.style.visibility = "hidden";
+            img_popup.style.width = 0;
+            img_popup.style.height = 0;
+
+            //console.log(img_popup.style);
+
+            // 예) 여기서 이미지 항목에 대한 클릭 이벤트를 받아서
+            btn_func.onclick = (evt) =>{
+                // 해당 이미지 요소에 대한 evt를 받아서 각 요소별 제어
+                //console.log("asdf");
+                //console.log(evt.target.id);
+                let tg_id = evt.target.id;
+                // 해당 아이디 값을 받아서 
+
+                tg_id = tg_id.split("_")[1];
+                // "_" 를 기준으로 문자를 나눈것중 idx가 1인 요소를 변수에 저장
+                // substr 사용은 권장하지 않음(duplicate) // 공식문서 출처
+                //console.log(tg_id);
+                let img_popup_body = document.getElementById("img_popup_body");
+                img_popup_body.innerHTML = `<img src='.pic/${tg_id}_LM1.jpg' alt='asdf' >`;
+                // 이후, 아이디값을 이미지 경로에 입혀서 같은이미지를 출력하게 html 요소 추가하기
+
+                img_popup.style.visibility = "visible"; // 이후 출력
+                // 이런식으로 동적 생성하여 사이드 기능 추가 가능
+            };
+
+            // 창닫기 기능도 이와 동일하게 핸들러 작성하면 된다.
+            // 이곳에 foreach 같이 각각의 요소들에 대해서도 제어할 수 있다.
+            let close_btn = document.getElementById("close_btn");
+            close_btn.addEventListener('click', () => {
+                // to do
+                img_popup.style.width = 0;
+                img_popup.style.height = 0;                
+                img_popup.style.visibility = "visible"; // 이후 출력
+            });
+            
+            
+        </script>
+
+    </body>
+    </html>
