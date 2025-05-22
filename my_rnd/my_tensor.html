@@ -12,6 +12,14 @@
     <script>
         window.onload = () => {
 
+            let today = new Date();
+            let year = today.getFullYear();
+            let month = ('0' + (today.getMonth() + 1)).slice(-2);
+            let day = ('0' + today.getDate()).slice(-2);
+            let today_num = year + month + day;
+            //console.log(today_num);
+
+
             // 🔶 학습 데이터 (더 많이 추가해도 좋음)
             const trainingData = Array.from({ length: 500 }, (_, i) => {
             const day = i % 7;
@@ -79,6 +87,7 @@
                 const { temperature, rainChance } = denormalize(result[0]);
 
                 document.getElementById("output").innerHTML = `
+                    ${today_num.slice(0,4)}년 ${today_num.slice(4,6)}월 ${today_num.slice(6,8)}일
                     <p>🌡️ 예측 온도: <strong>${temperature} °C</strong></p>
                     <p>🌧️ 강수 확률: <strong>${rainChance} %</strong></p>
                 `;
@@ -106,9 +115,9 @@
                 queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('12'); /*한 페이지 결과 11 수*/
                 queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /*페이지번호*/
                 queryParams += '&' + encodeURIComponent('dataType') + '=' + encodeURIComponent('JSON'); /*요청자료형식(XML/JSON) Default: XML*/
-                queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent('20250522'); /*	‘년 월 일 발표*/
+                queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent(today_num); /*	‘년 월 일 발표*/
                 queryParams += '&' + encodeURIComponent('base_time') + '=' + encodeURIComponent('0500'); /*06시 발표(정시단위)*/
-                queryParams += '&' + encodeURIComponent('nx') + '=' + encodeURIComponent('55'); /*	예보지점의 X 좌표값*/
+                queryParams += '&' + encodeURIComponent('nx') + '=' + encodeURIComponent('37'); /*	예보지점의 X 좌표값*/
                 queryParams += '&' + encodeURIComponent('ny') + '=' + encodeURIComponent('127'); /*	예보지점의 Y 좌표값*/
                 xhr.open('GET', url + queryParams);
                 xhr.onreadystatechange = function () {
