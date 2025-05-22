@@ -2,64 +2,87 @@
 <html>
 <head>
   <title>날씨 예측 (TensorFlow.js)</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs" ></script>
 </head>
 <body>
-  <h1>날씨 예측 (온도 + 강수확률)</h1>
-  <button onclick="trainAndPredict()">학습 및 예측</button>
+  <h1>다음날 날씨 예측 (온도 + 강수확률)</h1>
+  <!-- <button onclick="trainAndPredict()">학습 및 예측</button> -->
   <div id="output"></div>
-
-  <script>
-    async function trainAndPredict() {
-        const res = await fetch('weather_data.json');
-        const data = await res.json();
-
-        // 입력: [day, humidity, rainfall, wind]
-        const inputs = data.map(d => [d.day, d.humidity, d.rainfall, d.wind]);
-
-        // 출력: [temperature, rain_chance]
-        const labels = data.map(d => [d.temperature, d.rain_chance]);
-
-        const inputTensor = tf.tensor2d(inputs);
-        const labelTensor = tf.tensor2d(labels);
-
-        // 모델 정의
-        const model = tf.sequential();
-        model.add(tf.layers.dense({ inputShape: [4], units: 16, activation: 'relu' }));
-        model.add(tf.layers.dense({ units: 8, activation: 'relu' }));
-        model.add(tf.layers.dense({ units: 2 })); // 출력 2개: temperature, rain_chance
-
-        model.compile({
-            optimizer: tf.train.adam(),
-            loss: 'meanSquaredError'
-        });
-
-        await model.fit(inputTensor, labelTensor, {
-            epochs: 200,
-            callbacks: {
-            onEpochEnd: (epoch, logs) => {
-                console.log(`Epoch ${epoch}: loss = ${logs.loss}`);
-            }
-            }
-        });
-
-        // 예측: 예시 입력값
-        const testInput = tf.tensor2d([[8, 47, 0.1, 3.0]]);
-        const prediction = model.predict(testInput);
-
-        prediction.array().then(result => {
-            const [predictedTemp, predictedRainChance] = result[0];
-            document.getElementById('output').innerHTML = `
-            <p><strong>8일째 예측:</strong></p>
-            <p>🌡 온도: ${predictedTemp.toFixed(2)} °C</p>
-            <p>🌧 강수확률: ${predictedRainChance.toFixed(2)} %</p>
-            `;
-        });
-    };
-    </script>
 
     <script>
         window.onload = () => {
+
+            // 🔶 학습 데이터 (더 많이 추가해도 좋음)
+            const trainingData = Array.from({ length: 500 }, (_, i) => {
+            const day = i % 7;
+            const humidity = 40 + Math.random() * 60;
+            const rain_drop = Math.random() < 0.5 ? 0 : 1;
+            const wind_spd = 1 + Math.random() * 5;
+
+            const temp = 15 + Math.random() * 15; // 15~30도
+            const rainChance = Math.random() * 100;
+
+            return { day, humidity, rain_drop, wind_spd, temp, rainChance };
+            });
+
+            // 🔧 전처리 함수
+            function preprocessInput(data) {
+                return tf.tensor2d(data.map(d => [
+                    d.day ?? 0,
+                    Number(d.humidity) ?? 0,
+                    Number(d.rain_drop) ?? 0,
+                    Number(d.wind_spd) ?? 0
+                ]));
+            }
+
+            function preprocessOutput(data) {
+                return tf.tensor2d(data.map(d => [
+                    Number(d.temp) / 40,
+                    Number(d.rainChance) / 100
+                ]));
+            }
+
+            function denormalize([tempNorm, rainNorm]) {
+                return {
+                    temperature: (tempNorm * 40).toFixed(1),
+                    rainChance: (rainNorm * 100).toFixed(1)
+                };
+            }
+
+            // 📦 모델 학습
+            async function trainModel() {
+                const xs = preprocessInput(trainingData);
+                const ys = preprocessOutput(trainingData);
+
+                const model = tf.sequential();
+                model.add(tf.layers.dense({ inputShape: [4], units: 16, activation: 'relu' }));
+                model.add(tf.layers.dense({ units: 8, activation: 'relu' }));
+                model.add(tf.layers.dense({ units: 2 }));
+
+                model.compile({ loss: 'meanSquaredError', optimizer: 'adam' });
+                await model.fit(xs, ys, { epochs: 300, shuffle: true, verbose: 0 });
+
+                return model;
+            }
+
+            // 🔁 예측 함수
+            async function loadModelAndPredict(weather_info_list_arr) {
+                const model = await trainModel();
+
+                // 객체 배열을 평탄화하여 하나의 객체로 변환
+                const inputData = [{}];
+                weather_info_list_arr.forEach(item => Object.assign(inputData[0], item));
+
+                const inputTensor = preprocessInput(inputData);
+                const prediction = model.predict(inputTensor);
+                const result = await prediction.array();
+                const { temperature, rainChance } = denormalize(result[0]);
+
+                document.getElementById("output").innerHTML = `
+                    <p>🌡️ 예측 온도: <strong>${temperature} °C</strong></p>
+                    <p>🌧️ 강수 확률: <strong>${rainChance} %</strong></p>
+                `;
+            }
 
             // 키 호출
             async function svc_yk(svc){
@@ -80,10 +103,10 @@
                 var xhr = new XMLHttpRequest();
                 var url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'; /*URL*/
                 var queryParams = '?' + encodeURIComponent('serviceKey') + '='+ service_key; /*Service Key*/
-                queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /*한 페이지 결과 수*/
+                queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('12'); /*한 페이지 결과 11 수*/
                 queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /*페이지번호*/
                 queryParams += '&' + encodeURIComponent('dataType') + '=' + encodeURIComponent('JSON'); /*요청자료형식(XML/JSON) Default: XML*/
-                queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent('20250521'); /*	‘년 월 일 발표*/
+                queryParams += '&' + encodeURIComponent('base_date') + '=' + encodeURIComponent('20250522'); /*	‘년 월 일 발표*/
                 queryParams += '&' + encodeURIComponent('base_time') + '=' + encodeURIComponent('0500'); /*06시 발표(정시단위)*/
                 queryParams += '&' + encodeURIComponent('nx') + '=' + encodeURIComponent('55'); /*	예보지점의 X 좌표값*/
                 queryParams += '&' + encodeURIComponent('ny') + '=' + encodeURIComponent('127'); /*	예보지점의 Y 좌표값*/
@@ -94,22 +117,24 @@
                         const obj_txt = JSON.parse(this.responseText);
                         let obj_info_list = obj_txt.response.body.items.item;
                         
+                        let weather_info_list_arr = new Array;
                         obj_info_list.forEach(data => {
-                            // console.log(data);
+                            // console.log(data.category);
                             switch(data.category){
                                 case "TMP" : 
                                     // 1시간 기온 ℃
-                                    console.log("현재 기온: "+ data.fcstValue + " ℃");
+                                    // console.log("현재 기온: "+ data.fcstValue + " ℃");
+                                    weather_info_list_arr.push({"temp":data.fcstValue});
                                     break;
 
                                 case "UUU" : 
                                     // 풍속(동서성분) m/s
-                                    console.log("풍속(동서성분): " + data.fcstValue + "m/s");
+                                    // console.log("풍속(동서성분): " + data.fcstValue + "m/s");
                                     break;
 
                                 case "VVV" : 
                                     // 풍속(남북성분) m/s
-                                    console.log("풍속(남북성분): " + data.fcstValue + "m/s");
+                                    // console.log("풍속(남북성분): " + data.fcstValue + "m/s");
                                     break;          
                                     
                                 case "VEC" : 
@@ -129,12 +154,16 @@
                                     };
 
                                     let direct_vec = getDirection(vec_prs);
-                                    //console.log(direct_vec);
+                                    // console.log("풍향 : " + direct_vec + "방향 (방위: " + vec_prs + "도)");
+
+                                    weather_info_list_arr.push({"wind_direction":direct_vec}); //풍향
+                                    weather_info_list_arr.push({"wind_deg":data.fcstValue}); //방위
                                 break;                                    
                                     
                                 case "WSD" : 
                                     // 풍속  m/s
-                                    console.log("풍속: " + data.fcstValue + "m/s");
+                                    // console.log("풍속: " + data.fcstValue + "m/s");
+                                    weather_info_list_arr.push({"wind_spd":data.fcstValue}); //풍속
                                     break;
 
                                 case "SKY" : 
@@ -142,16 +171,20 @@
                                     let switch_val_sky = parseInt(data.fcstValue);
                                     switch(switch_val_sky){
                                         case 1 : 
-                                            console.log("날씨 : 맑음");
+                                            // console.log("날씨 : 맑음");
+                                            weather_info_list_arr.push({"sky":"sunny"});
                                             break;
                                         case 3 : 
-                                            console.log("날씨 : 구름많음");             
+                                            // console.log("날씨 : 구름많음");      
+                                            weather_info_list_arr.push({"sky":"sunny_and_cloudy"});
                                             break;             
                                         case 4 : 
-                                            console.log("날씨 : 흐림");             
+                                            // console.log("날씨 : 흐림");
+                                            weather_info_list_arr.push({"sky":"cloudy"});
                                             break;                   
                                         default :
-                                            console.log("날씨 호출 오류");
+                                            // console.log("날씨 호출 오류");
+                                            weather_info_list_arr.push({"sky":null});
                                             break;                             
                                     };
                                 break;
@@ -165,60 +198,84 @@
                                     let switch_val_rain_type = parseInt(data.fcstValue);
                                     switch(switch_val_rain_type){
                                         case 0 : 
-                                            console.log("강수 형태 : 없음");
+                                            // console.log("강수 형태 : 없음");
+                                            weather_info_list_arr.push({"rain_type":"normal"});
                                             break;
                                         case 1 : 
-                                            console.log("강수 형태 : 비");      
+                                            // console.log("강수 형태 : 비");
+                                            weather_info_list_arr.push({"rain_type":"rain"});
                                             break;    
                                         case 2 : 
-                                            console.log("강수 형태 : 비 혹은 눈");
+                                            // console.log("강수 형태 : 비 혹은 눈");
+                                            weather_info_list_arr.push({"rain_type":"rain/snow"});
                                             break;                            
                                         case 3 : 
-                                            console.log("강수 형태 : 눈");
+                                            // console.log("강수 형태 : 눈");
+                                            weather_info_list_arr.push({"rain_type":"snow"});
                                             break;                         
                                         case 4 : 
-                                            console.log("강수 형태 : 소나기");
+                                            // console.log("강수 형태 : 소나기");
+                                            weather_info_list_arr.push({"rain_type":"shower"});
                                             break;                                                                                
-                                    }
+                                    };
                                 break;
 
 
                                 case "POP" : 
                                     // 강수확률, %
                                     if(data.fcstValue == 0){
-                                        console.log("강수확률: 없음(0%)");   
+                                        // console.log("강수확률: 없음(0%)");   
+                                        weather_info_list_arr.push({"rain_perct":0});
                                     }else{
-                                        console.log("강수확률: " + data.fcstValue + " %");
-                                    }
+                                        // console.log("강수확률: " + data.fcstValue + " %");
+                                        weather_info_list_arr.push({"rain_perct":data.fcstValue});
+                                    };
                                 break;          
                    
 
                                 case "WAV" : 
                                     // 파고, m
                                     if(0 < data.fcstValue && data.fcstValue > 20){
-                                        console.log("파고: " + data.fcstValue + " m");
+                                        // console.log("파고: " + data.fcstValue + " m");
+                                        weather_info_list_arr.push({"wave":data.fcstValue});
                                     }else{
-                                        console.log("파고: 해당없음");
-                                    }
+                                        // console.log("파고: 해당없음");
+                                        weather_info_list_arr.push({"wave":0});
+                                    };
                                 break;        
 
 
                                 case "PCP" : 
                                     // 1시간 강수량, 범주 (1 mm)
                                     if(data.fcstValue == "강수없음"){
-                                        console.log("시간당 강수량: 0 mm");
+                                        // console.log("시간당 강수량: 0 mm");
+                                        weather_info_list_arr.push({"rain_drop":0});
                                     }else{
-                                        console.log("시간당 강수량: " + data.fcstValue + "mm");
-                                    }
+                                        // console.log("시간당 강수량: " + data.fcstValue + "mm");
+                                        weather_info_list_arr.push({"rain_drop":data.fcstValue});
+                                    };
+                                break;
+
+                                case "REH" : 
+                                    weather_info_list_arr.push({"humidity":data.fcstValue});
+                                break;       
+                                
+                                default :
+                                    let cnt_1 = 1;
+                                    weather_info_list_arr.push({"day":cnt_1});
+                                    cnt_1++;
                                 break;
                             };
                         });
+                        // console.log(weather_info_list_arr);
+                        loadModelAndPredict(weather_info_list_arr);
                     };
                 };
-
                 xhr.send('');                     
-            };            
+            };      
         };
     </script>
+
+
 </body>
 </html>
